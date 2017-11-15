@@ -2,8 +2,7 @@ PriceTravel Challenge
 ===================
 Hackathon SG Cancun
 
-![pricetravel](https://sg.com.mx/hackatour/wp-content/uploads/2017/07/Pricetravel-com-mx-300x75.jpg]
-![hakactour](https://sg.com.mx/hackatour/wp-content/uploads/2017/02/cropped-Hackatour-horizontal.png]
+![pricetravel](https://sg.com.mx/hackatour/wp-content/uploads/2017/07/Pricetravel-com-mx-300x75.jpg) ![hakactour](https://sg.com.mx/hackatour/wp-content/uploads/2017/02/cropped-Hackatour-horizontal.png)
 
 Descripción
 -----------
