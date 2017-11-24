@@ -1,0 +1,6 @@
+Inicio
+Listado de eventos (con filtro)
+Ver evento
+Usuario/Editar perfil
+Login/Registro
+Favoritos

@@ -1,0 +1,3 @@
+Filtro por ciudad, evento, fecha
+Ver todos los eventos y eventos seleccionados
+Ver favoritos por usuario

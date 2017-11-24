@@ -1,0 +1,4 @@
+Listar paginas de los eventos
+Buscar infomracion de paginas, clasificarlas
+Obtener información
+Guardar información en DB o en archivos JSON
