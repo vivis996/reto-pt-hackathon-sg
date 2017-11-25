@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router();
 var DbConnect = require('../DbConnect');
 
+var primary ="`Id`";
 var table = "favoritos";
-var colums = "*";
+var colums = "`IdUsuario`,`IdEventos`";
 
 /* Obtenemos y mostramos todos los usuarios */
 router.get('/', function(req, res) {
-    DbConnect.read(table, colums, null, function(error, data) {
+    DbConnect.read(table, primary + ',' + colums, null, function(error, data) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
         else
@@ -15,39 +16,7 @@ router.get('/', function(req, res) {
     });
 });
 
-/* Creamos un nuevo usuario */
-router.post("/", function(req,res) {
-    var userData = {
-        Id : null,
-        IdUsuario: req.body.IdUsuario,
-        IdEventos: req.body.IdEventos,
-        created_at : null
-    };
-    DbConnect.create(table,userData, function(error, data) {
-        if(data && data.insertId) 
-            res.json({"msg": "ok"});
-        else
-            res.json(404,{"msg" : "notExist", "error": error});
-    });
-});
-
-/* Actualizamos un usuario existente */
-router.put('/', function(req, res) {
-    var userData = {
-        Id:req.param('Id'),
-        IdUsuario:req.param('IdUsuario'),
-        IdEventos:req.param('IdEventos'),
-        
-    };
-    DbConnect.update(userData,function(error, data) {
-        if(data && data.msg) 
-            res.json({"msg": "ok"});
-        else
-            res.json(404,{"msg" : "notExist", "error": error});
-    });
-});
-
-router.get('/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
     var id = req.params.id;
     if (id != null) {
     var where = " id=" + id;
@@ -60,6 +29,23 @@ router.get('/:id', function(req, res) {
     }
     else
         res.json(500,{"msg":"The id must be numeric"});
+});
+
+/* Actualizamos un usuario existente */
+router.post('/', function(req, res) {
+    var userData = {
+        IdUsuario : req.query.IdUsuario,
+        IdEventos : req.query.IdEventos,
+    };
+    var set= "'"+userData.IdUsuario+"',"+
+             "'"+userData.IdEventos+"'";
+        
+    DbConnect.create(table, colums,set,function(error, data) {
+        if(data && data.insertId) 
+            res.json({"msg": "ok"});
+        else
+            res.json(404,{"msg" : "notExist", "error": error});
+    });
 });
 
 module.exports = router;

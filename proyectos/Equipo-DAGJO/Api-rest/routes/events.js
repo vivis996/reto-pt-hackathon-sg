@@ -1,14 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-//Obtener solo un evento (id)
-router.get('/', function(req, res, next) {
-    var id = req.query.id;
-    var message = "OK";
-    if (id == null)
-      res.status(400).send('None shall pass');
-    res.send(message);
-});
+
 
 //Obtener todos los eventos
 router.get('/filter', function(req, res, next) {
@@ -17,7 +10,18 @@ router.get('/filter', function(req, res, next) {
 
 //Obtener todos los eventos si contiene nombre 
 router.get('/contains', function(req, res, next) {
-  res.send('All events');
+    var id = req.params.id;
+    if (id != null) {
+    var where = " id=" + id;
+    DbConnect.read(table, colums, where, function(error, data) {
+        if (typeof data !== 'undefined' && data.length > 0)
+            res.json(data);
+        else
+            res.json(404,{"msg" : "notExist", "error": error});
+    });
+    }
+    else
+        res.json(500,{"msg":"The id must be numeric"});
 });
 
 //Ver favoritos de usuario (id)
@@ -35,12 +39,13 @@ var express = require('express');
 var router = express.Router();
 var DbConnect = require('../DbConnect');
 
+var primary ="'Id'";
 var table = "eventos";
-var colums = "*";
+var colums = "'Nombre','Fecha','Descripcion','IdSitioWeb','IdTipoEvento',IdCiudad,'Ubicacion'";
 
 /* Obtenemos y mostramos todos los usuarios */
 router.get('/', function(req, res) {
-    DbConnect.read(table, colums, null, function(error, data) {
+    DbConnect.read(table, primary +','+ colums, null, function(error, data) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
         else
@@ -48,7 +53,7 @@ router.get('/', function(req, res) {
     });
 });
 
-/* Creamos un nuevo usuario */
+/* Creamos un nuevo evento */
 router.post("/", function(req,res) {
     var userData = {
         Id : null,
@@ -61,6 +66,14 @@ router.post("/", function(req,res) {
         Ubicacion : req.body.Ubicacion,
         created_at : null
     };
+     
+        var data ="'" + userData.Nombre + "'," +
+        "'" + userData.Fecha + "'," +
+        "'" + userData.Descripcion + "'," +
+        "'" + userData.IdSitioWeb + "'," +
+        "'" + userData.IdTipoEvento + "'," +  
+        "'" + userData.IdTipoEvento+ "'," +        
+        "'" + userData.Ubicacion + "'";
     DbConnect.create(table,userData, function(error, data) {
         if(data && data.insertId) 
             res.json({"msg": "ok"});
