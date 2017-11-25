@@ -26,6 +26,7 @@ router.post("/", function(req,res) {
         Password : req.query.Password,
         Correo : req.query.Correo,
     };
+    console.log(userData);
     var data = "'" + userData.Nombre + "'," +
                 "'" + userData.Apellidos + "'," +
                 "'" + userData.Usuario + "'," +
@@ -54,9 +55,8 @@ router.put('/', function(req, res) {
             "Password='" + userData.Password + "'," + 
             "Correo='" + userData.Correo + "'";
     var where = 'id=' + req.query.id;
-    console.log(where);
     DbConnect.update(table, set, where,function(error, data) {
-        if(data && data.msg) 
+        if(error == null) 
             res.json({"status": "ok"});
         else
             res.json(404,{"status" : "notExist", "error": error});
