@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#myPage">EvenToday</a>
+            <a class="navbar-brand" href="./">EvenToday</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -109,7 +109,7 @@
                 </div>
                 <div class="panel-body">
 
-                    <img class="img-circle" src="img2/DIABLOS.jpg" width="300" height="200">
+                    <img class="img-circle" src="img/DIABLOS.jpg" width="300" height="200">
                 </div>
                 <div class="panel-footer">
 
@@ -127,7 +127,7 @@
                     <h1>Musicales</h1>
                 </div>
                 <div class="panel-body">
-                    <img class="img-circle" src="img2/music2.jpg" width="300" height="200">
+                    <img class="img-circle" src="img/music2.jpg" width="300" height="200">
                 </div>
                 <div class="panel-footer">
 
@@ -144,7 +144,7 @@
                     <h1>Deportivos</h1>
                 </div>
                 <div class="panel-body">
-                    <img class="img-circle" src="img2/eventos-deportivos.jpg" width="300" height="200">
+                    <img class="img-circle" src="img/eventos-deportivos.jpg" width="300" height="200">
                 </div>
                 <div class="panel-footer">
 
@@ -173,14 +173,14 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="item active">
-                <img src="img2/cancun2.jpg" alt="New York" width="1366" height="623">
+                <img src="img/cancun2.jpg" alt="New York" width="1366" height="623">
                 <div class="carousel-caption">
                     <h3>¡Visitalo!</h3>
                     <p>Ven y vive la experiencia de la lluvia de estrellas.</p>
                 </div>
             </div>
             <div class="item">
-                <img src="img2/fest1.jpg" alt="Chicago" width="1200" height="700">
+                <img src="img/fest1.jpg" alt="Chicago" width="1200" height="700">
                 <div class="carousel-caption">
                     <h3>Danza del venado</h3>
                     <p>Ballet Folklórico de Mexico de Amalia Hernández.</p>
@@ -188,7 +188,7 @@
             </div>
 
             <div class="item">
-                <img src="img2/music.jpg" alt="Los Angeles" width="1200" height="700">
+                <img src="img/music.jpg" alt="Los Angeles" width="1200" height="700">
                 <div class="carousel-caption">
                     <h3>Playa del Carmen</h3>
                     <p>¡Ven y disfruta de la mejor música electronica en la palaya!</p>
