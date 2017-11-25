@@ -1,10 +1,9 @@
 var mysql = require('mysql'),
-connection = mysql.createConnection(
-    { 
+connection = mysql.createConnection({ 
         host: 'localhost', 
         user: 'root',  
         password: '', 
-        database: 'test'
+        database: 'mydb'
     }
 );
  
@@ -22,17 +21,19 @@ crud.read = function(table, columns, where, callback) {
     });
 }
  
-crud.create = function(table, userData,callback) {
+crud.create = function(table, columns, data, callback) {
     if (!connection) return;
-    connection.query('INSERT INTO ' + table + ' SET ?', userData, function(error, result) {
+    var sql = 'INSERT INTO ' + table + '(' + columns + ') VALUES (' + data + ')';
+    connection.query(sql, data, function(error, result) {
         if(error) throw error;
         callback(null,{"insertId" : result.insertId});
     });
 }
  
-crud.update = function(table, values, userData, callback) {
+crud.update = function(table, values, where, callback) {
     if (!connection) return;
-    var sql = 'UPDATE ' + table + ' SET ' + values;
+    var sql = 'UPDATE ' + table + ' SET ' + values + " WHERE " + where;
+    console.log(sql);
     connection.query(sql, function(error, result) {
         if(error) throw error;
         callback(null,{"msg":"success"});

@@ -2,16 +2,17 @@ var express = require('express');
 var router = express.Router();
 var DbConnect = require('../DbConnect');
 
-var table = "users";
-var colums = "*";
+var table = "usuario";
+var primary = "`Id`";
+var colums = "`Nombre`,`Apellidos`,`Usuario`,`Password`,`Correo`";
 
 /* Obtenemos y mostramos todos los usuarios */
 router.get('/users', function(req, res) {
-    DbConnect.read(table, colums, null, function(error, data) {
+    DbConnect.read(table, primary + ',' + colums, null, function(error, data) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
         else
-            res.json(404,{"msg" : "notExist", "error": error});
+            res.json(404,{"status" : "notCreate", "error": error});
     });
 });
 
@@ -19,31 +20,46 @@ router.get('/users', function(req, res) {
 router.post("/", function(req,res) {
     var userData = {
         id : null,
-        username : req.body.username,
-        email : req.body.email,
-        password : req.body.password,
-        created_at : null
+        Nombre : req.query.Nombre,
+        Apellidos : req.query.Apellidos,
+        Usuario : req.query.Usuario,
+        Password : req.query.Password,
+        Correo : req.query.Correo,
     };
-    DbConnect.create(userData, function(error, data) {
+    var data = "'" + userData.Nombre + "'," +
+                "'" + userData.Apellidos + "'," +
+                "'" + userData.Usuario + "'," +
+                "'" + userData.Password + "'," +
+                "'" + userData.Correo + "'";
+    DbConnect.create(table, colums, data, function(error, data) {
         if(data && data.insertId) 
-            res.json({"msg": "ok"});
+            res.json({id : data.insertId, status : "ok"});
         else
-            res.json(404,{"msg" : "notExist", "error": error});
+            res.json(404,{"status" : "notInsert", "error": error});
     });
 });
 
 /* Actualizamos un usuario existente */
 router.put('/', function(req, res) {
     var userData = {
-        id:req.param('id'),
-        username:req.param('username'),
-        email:req.param('email')
+        Nombre : req.query.Nombre,
+        Apellidos : req.query.Apellidos,
+        Usuario : req.query.Usuario,
+        Password : req.query.Password,
+        Correo : req.query.Correo,
     };
-    DbConnect.update(userData,function(error, data) {
+    var set = "Nombre='" + userData.Nombre + "'," +
+            "Apellidos='" + userData.Apellidos + "'," +
+            "Usuario='" + userData.Usuario + "',"+
+            "Password='" + userData.Password + "'," + 
+            "Correo='" + userData.Correo + "'";
+    var where = 'id=' + req.query.id;
+    console.log(where);
+    DbConnect.update(table, set, where,function(error, data) {
         if(data && data.msg) 
-            res.json({"msg": "ok"});
+            res.json({"status": "ok"});
         else
-            res.json(404,{"msg" : "notExist", "error": error});
+            res.json(404,{"status" : "notExist", "error": error});
     });
 });
 
@@ -51,7 +67,7 @@ router.get('/:id', function(req, res) {
     var id = req.params.id;
     if (id != null) {
     var where = " id=" + id;
-    DbConnect.read(table, colums, where, function(error, data) {
+    DbConnect.read(table,  primary + ',' + colums, where, function(error, data) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
         else
