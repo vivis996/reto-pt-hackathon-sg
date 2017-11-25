@@ -1,0 +1,42 @@
+var mysql = require('mysql'),
+connection = mysql.createConnection(
+    { 
+        host: 'localhost', 
+        user: 'root',  
+        password: '', 
+        database: 'test'
+    }
+);
+ 
+var crud = {};
+ 
+crud.read = function(table, columns, where, callback) {
+    if (!connection) return;
+    var sql = 'SELECT ' + columns + ' FROM ' + table;
+    if (where != null && where != "")
+        sql += ' WHERE ' + where;
+        console.log(sql);
+    connection.query(sql, function(error, rows) {
+        if(error) throw error;
+        callback(null, rows);
+    });
+}
+ 
+crud.create = function(table, userData,callback) {
+    if (!connection) return;
+    connection.query('INSERT INTO ' + table + ' SET ?', userData, function(error, result) {
+        if(error) throw error;
+        callback(null,{"insertId" : result.insertId});
+    });
+}
+ 
+crud.update = function(table, values, userData, callback) {
+    if (!connection) return;
+    var sql = 'UPDATE ' + table + ' SET ' + values;
+    connection.query(sql, function(error, result) {
+        if(error) throw error;
+        callback(null,{"msg":"success"});
+    });
+}
+
+module.exports = crud;

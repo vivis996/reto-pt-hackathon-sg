@@ -1,8 +1,7 @@
-Traer listado completo de eventos
-Traer listado por filtro
-Traer listado de tipo de eventos
+Traer listado completo de eventos/por filtro de tipo de eventos
 Ver evento seleccionado
 *Descomponer la informacion del crawler
-Traer información del usuario
+Traer informaciï¿½n del usuario
+
 Traer favoritos del usuario
 Marcar/Desmarcar favorito
