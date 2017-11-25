@@ -39,9 +39,9 @@ var express = require('express');
 var router = express.Router();
 var DbConnect = require('../DbConnect');
 
-var primary ="'Id'";
+var primary ="`Id`";
 var table = "eventos";
-var colums = "'Nombre','Fecha','Descripcion','IdSitioWeb','IdTipoEvento',IdCiudad,'Ubicacion'";
+var colums = "`Nombre`,`Fecha`,`Descripcion`,`IdSitioWeb`,`IdTipoEvento`,`IdCiudad`,`Ubicacion`";
 
 /* Obtenemos y mostramos todos los usuarios */
 router.get('/', function(req, res) {
@@ -57,13 +57,13 @@ router.get('/', function(req, res) {
 router.post("/", function(req,res) {
     var userData = {
         Id : null,
-        Nombre : req.body.Nombre,
-        Fecha : req.body.Fecha,
-        Descripcion : req.body.Descripcion,
-        IdSitioWeb : req.body.IdSitioWeb,
-        IdTipoEvento : req.body.IdTipoEvento,
-        IdCiudad : req.body.IdCiudad,        
-        Ubicacion : req.body.Ubicacion,
+        Nombre : req.query.Nombre,
+        Fecha : req.query.Fecha,
+        Descripcion : req.query.Descripcion,
+        IdSitioWeb : req.query.IdSitioWeb,
+        IdTipoEvento : req.query.IdTipoEvento,
+        IdCiudad : req.query.IdCiudad,        
+        Ubicacion : req.query.Ubicacion,
         created_at : null
     };
      
@@ -74,7 +74,7 @@ router.post("/", function(req,res) {
         "'" + userData.IdTipoEvento + "'," +  
         "'" + userData.IdTipoEvento+ "'," +        
         "'" + userData.Ubicacion + "'";
-    DbConnect.create(table,userData, function(error, data) {
+    DbConnect.create(table,colums,data, function(error, data) {
         if(data && data.insertId) 
             res.json({"msg": "ok"});
         else
@@ -82,26 +82,6 @@ router.post("/", function(req,res) {
     });
 });
 
-/* Actualizamos un usuario existente */
-router.put('/', function(req, res) {
-    var userData = {
-        id:req.param('Id'),
-        Nombre:req.param('Nombre'),
-        Fecha:req.param('Fecha'),
-        Nombre:req.param('Nombre'),
-        Descripcion:req.param('Descripcion'),
-        IdSitioWeb:req.param('IdSitioWeb'),
-        IdTipoEventp:req.param('IdTipoEvento'),        
-        IdCiudad:req.param('IdCiudad'),                
-        Ubicacion:req.param('Ubicacion'),
-    };
-    DbConnect.update(table,userData,function(error, data) {
-        if(data && data.msg) 
-            res.json({"msg": "ok"});
-        else
-            res.json(404,{"msg" : "notExist", "error": error});
-    });
-});
 
 router.get('/:id', function(req, res) {
     var id = req.params.id;

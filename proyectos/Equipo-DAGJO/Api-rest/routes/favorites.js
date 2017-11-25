@@ -20,11 +20,8 @@ router.delete('/:id', function(req, res) {
     var id = req.params.id;
     if (id != null) {
     var where = " id=" + id;
-    DbConnect.read(table, colums, where, function(error, data) {
-        if (typeof data !== 'undefined' && data.length > 0)
+    DbConnect.delete(table, id , function(error, data) {
             res.json(data);
-        else
-            res.json(404,{"msg" : "notExist", "error": error});
     });
     }
     else
@@ -42,7 +39,7 @@ router.post('/', function(req, res) {
         
     DbConnect.create(table, colums,set,function(error, data) {
         if(data && data.insertId) 
-            res.json({"msg": "ok"});
+            res.json({id : data.insertId, status : "ok"});
         else
             res.json(404,{"msg" : "notExist", "error": error});
     });
