@@ -19,10 +19,13 @@ router.get('/', function(req, res) {
 router.delete('/:id', function(req, res) {
     var id = req.params.id;
     if (id != null) {
-    var where = " id=" + id;
-    DbConnect.delete(table, id , function(error, data) {
-            res.json(data);
-    });
+        var where = " id=" + id;
+        DbConnect.delete(table, where , function(error, data) {
+            if (error == null)
+                res.json({ status : ok });
+            else
+                res.json(404,{"msg" : "notExist", "error": error});
+        });
     }
     else
         res.json(500,{"msg":"The id must be numeric"});
@@ -34,10 +37,9 @@ router.post('/', function(req, res) {
         IdUsuario : req.query.IdUsuario,
         IdEventos : req.query.IdEventos,
     };
-    var set= "'"+userData.IdUsuario+"',"+
+    var set = "'"+userData.IdUsuario+"',"+
              "'"+userData.IdEventos+"'";
-        
-    DbConnect.create(table, colums,set,function(error, data) {
+    DbConnect.create(table, colums, set,function(error, data) {
         if(data && data.insertId) 
             res.json({id : data.insertId, status : "ok"});
         else

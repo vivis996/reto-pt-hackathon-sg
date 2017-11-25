@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var DbConnect = require('../DbConnect');
 
-
+var primary ="`Id`";
+var table = "eventos";
+var colums = "`Nombre`,`Fecha`,`Descripcion`,`IdSitioWeb`,`IdTipoEvento`,`IdCiudad`,`Ubicacion`";
 
 //Obtener todos los eventos
 router.get('/filter', function(req, res, next) {
@@ -33,19 +36,9 @@ router.get('/favorites', function(req, res, next) {
     res.send(message);
 });
 
-module.exports = router;
-
-var express = require('express');
-var router = express.Router();
-var DbConnect = require('../DbConnect');
-
-var primary ="`Id`";
-var table = "eventos";
-var colums = "`Nombre`,`Fecha`,`Descripcion`,`IdSitioWeb`,`IdTipoEvento`,`IdCiudad`,`Ubicacion`";
-
 /* Obtenemos y mostramos todos los usuarios */
 router.get('/', function(req, res) {
-    DbConnect.read(table, primary +','+ colums, null, function(error, data) {
+    DbConnect.read(table, primary + ',' + colums, null, function(error, data) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
         else
@@ -67,14 +60,14 @@ router.post("/", function(req,res) {
         created_at : null
     };
      
-        var data ="'" + userData.Nombre + "'," +
+    var data ="'" + userData.Nombre + "'," +
         "'" + userData.Fecha + "'," +
         "'" + userData.Descripcion + "'," +
         "'" + userData.IdSitioWeb + "'," +
         "'" + userData.IdTipoEvento + "'," +  
         "'" + userData.IdTipoEvento+ "'," +        
         "'" + userData.Ubicacion + "'";
-    DbConnect.create(table,colums,data, function(error, data) {
+    DbConnect.create(table, colums, data, function(error, data) {
         if(data && data.insertId) 
             res.json({"msg": "ok"});
         else

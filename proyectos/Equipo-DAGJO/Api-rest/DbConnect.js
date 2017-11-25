@@ -29,17 +29,15 @@ crud.update = function(table, values, where, callback) {
     Query(sql, callback);
 }
 
-crud.delete = function(table, id, callback) {
+crud.delete = function(table, where, callback) {
     if (!connection) return;
-    var sql = 'DELETE FROM ' + table + ' WHERE id = ' + connection.escape(id);
+    var sql = 'DELETE FROM ' + table + ' WHERE ' + where;
     Query(sql, callback);
 }
 
 function Query(sql, callback){
     connection.query(sql, function(error, result) {
-        console.log(sql);
-        if(error) throw error;
-        callback(null, result);
+        callback(error, result);
     });
 }
 
