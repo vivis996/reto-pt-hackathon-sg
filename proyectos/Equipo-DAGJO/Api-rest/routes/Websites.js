@@ -6,7 +6,7 @@ var table = "sitioweb";
 var colums = "*";
 
 /* Obtenemos y mostramos todos los usuarios */
-router.get('/', function(req, res) {
+router.get('/all', function(req, res) {
     DbConnect.read(table, colums, null, function(error, data) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
@@ -15,38 +15,7 @@ router.get('/', function(req, res) {
     });
 });
 
-/* Creamos un nuevo usuario */
-router.post("/", function(req,res) {
-    var userData = {
-        Id : null,
-        Nombre: req.body.Nombre,
-        Pagina: req.body.Pagina,
-        created_at : null
-    };
-    DbConnect.create(table,userData, function(error, data) {
-        if(data && data.insertId) 
-            res.json({"msg": "ok"});
-        else
-            res.json(404,{"msg" : "notExist", "error": error});
-    });
-});
-
-/* Actualizamos un usuario existente */
-router.put('/', function(req, res) {
-    var userData = {
-        Id:req.param('Id'),
-        Nombre:req.param('Nombre'),
-        Pagina:req.param('Pagina'),
-        
-    };
-    DbConnect.update(userData,function(error, data) {
-        if(data && data.msg) 
-            res.json({"msg": "ok"});
-        else
-            res.json(404,{"msg" : "notExist", "error": error});
-    });
-});
-
+//por id 
 router.get('/:id', function(req, res) {
     var id = req.params.id;
     if (id != null) {

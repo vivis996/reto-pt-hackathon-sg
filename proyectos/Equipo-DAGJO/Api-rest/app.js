@@ -13,10 +13,6 @@ var ciudades = require('./routes/ciudades');
 var websites = require('./routes/Websites');
 var eventype = require('./routes/Eventype');
 
-
-
-
-
 var app = express();
 
 // view engine setup
@@ -35,11 +31,8 @@ app.use('/events', events);
 app.use('/users', users);
 app.use('/favorites', favorites);
 app.use('/ciudades', ciudades);
-app.use('/Websites', websites);
-app.use('/Eventype', eventype);
-
-
-
+app.use('/websites', websites);
+app.use('/eventype', eventype);
 
 
 // catch 404 and forward to error handler
