@@ -90,9 +90,9 @@ function test_input($data) {
         <input type="password" name="name" id="name" placeholder="Contraseña" required/>
         <div class="gender">
             <input type="radio" value="None" id="male" name="gender" checked/>
-            <label for="male" class="radio" chec>Masc</label>
+            <label for="male" class="radio" chec>H</label>
             <input type="radio" value="None" id="female" name="gender" />
-            <label for="female" class="radio">Fem</label>
+            <label for="female" class="radio">M</label>
         </div>
         <p>Al hacer clic en Registrarse, usted acepta nuestros <a href="#">terms y cond</a>.</p>
         <a href="#" class="button" type="submit"onclick="myFunction()">Registrar</a>
