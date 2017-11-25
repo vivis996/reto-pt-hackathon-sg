@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+include('rest.php');
+$userActive = false;
+if ($_SESSION["userActive"] != null)
+    $userActive = true;
+
+//$resultado = Rest::sendGet('users', '6', '/');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,74 +25,7 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#myPage">NubeEvento</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#pricing">Eventos </a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#portfolio">Favoritos</a></li>
-                <li><a href="#about">Sobre Nosotros</a></li>
-
-
-                <li><a href="#contact">Contacto</a></li>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="registrarse.php"><span class="glyphicon glyphicon-user"></span> Registrarse</a>
-                    </li>
-                    <li class="dropdown">
-                        <link rel="stylesheet" href="css/eslitologin.css">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Iniciar Sesión</b> <span class="caret"></span></a>
-                        <ul id="login-dp" class="dropdown-menu">
-                            <li>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        Iniciar sesión
-                                        <!--<div class="social-buttons">
-                                            <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                            <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                                        </div>-->
-
-                                        <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputEmail2">Correo electrónico</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Correo electrónico" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Contraseña" required>
-                                                <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <a href="index.html" class="btn btn-tw"><i class="fa fa-twitter"></i> Iniciar Sesion</a>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox"> Mantener sesión
-                                                </label>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="bottom text-center">
-                                        ¿Nuevo aqui? <a href="registrarse.php"><b>Unetenos</b></a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                </ul>
-
-        </div>
-    </div>
-</nav>
+<?php include 'head.php' ?>
 
 <div class="jumbotron text-center">
     <h1>NubeEvento</h1>
@@ -210,7 +154,6 @@
             <div class="thumbnail">
 s
                 <img src="img/cancun1.jpg" alt="Paris" width="800" height="200">
-                <p><strong>Cancún</strong></p>
                 <p><a href="xd.php" title="Visitanos ">Cancun</a></p>
             </div>
         </div>
@@ -351,30 +294,8 @@ s
     </div>
 </div>
 
-<!-- Google Maps -->
-<div id="googleMap" style="height:400px;width:100%;"></div>
-<script>
-    function myMap() {
-        var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-        var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        var marker = new google.maps.Marker({position:myCenter});
-        marker.setMap(map);
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
 
-<footer class="container-fluid text-center">
-    <a href="#myPage" title="To Top">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-    </a>
-    <p> <a href="https://www.eventos.com" title="Visitanos ">Inicio</a></p>
-</footer>
-
+<?php include 'footer.php' ?>
 <script>
     $(document).ready(function(){
         // Add smooth scrolling to all links in navbar + footer link
