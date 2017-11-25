@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var DbConnect = require('../DbConnect');
 
-var table = "users";
+var table = "usuario";
 var colums = "*";
 
 /* Obtenemos y mostramos todos los usuarios */
-router.get('/users', function(req, res) {
+router.get('/', function(req, res) {
     DbConnect.read(table, colums, null, function(error, data) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
@@ -18,13 +18,15 @@ router.get('/users', function(req, res) {
 /* Creamos un nuevo usuario */
 router.post("/", function(req,res) {
     var userData = {
-        id : null,
-        username : req.body.username,
-        email : req.body.email,
-        password : req.body.password,
+        Id : null,
+        Nombre: req.body.Nombre,
+        Apellidos: req.body.Apellidos,
+        Usuario : req.body.Usuario,
+        Password : req.body.Password,
+        Correo : req.body.Correo,
         created_at : null
     };
-    DbConnect.create(userData, function(error, data) {
+    DbConnect.create(table,userData, function(error, data) {
         if(data && data.insertId) 
             res.json({"msg": "ok"});
         else
@@ -35,9 +37,12 @@ router.post("/", function(req,res) {
 /* Actualizamos un usuario existente */
 router.put('/', function(req, res) {
     var userData = {
-        id:req.param('id'),
-        username:req.param('username'),
-        email:req.param('email')
+        Id:req.param('Id'),
+        Nombre:req.param('Nombre'),
+        Apellidos:req.param('Apellidos'),
+        Usuario:req.param('Usuario'),
+        Password:req.param('Password'),
+        Correo:req.param('Correo'),
     };
     DbConnect.update(userData,function(error, data) {
         if(data && data.msg) 

@@ -6,8 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var dbConect = require('./DbConnect');
-var index = require('./routes/events');
+var events = require('./routes/events');
 var users = require('./routes/users');
+var favorites = require('./routes/favorites');
+var ciudades = require('./routes/ciudades');
+var websites = require('./routes/Websites');
+var eventype = require('./routes/Eventype');
+
+
+
+
 
 var app = express();
 
@@ -23,8 +31,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/events', index);
+app.use('/events', events);
 app.use('/users', users);
+app.use('/favorites', favorites);
+app.use('/ciudades', ciudades);
+app.use('/Websites', websites);
+app.use('/Eventype', eventype);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
