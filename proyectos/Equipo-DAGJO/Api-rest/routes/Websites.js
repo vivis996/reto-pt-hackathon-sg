@@ -11,7 +11,7 @@ router.get('/all', function(req, res) {
         if (typeof data !== 'undefined' && data.length > 0)
             res.json(data);
         else
-            res.json(404,{"msg" : "notExist", "error": error});
+            res.json(404, { "msg": "notExist", "error": error });
     });
 });
 
@@ -19,16 +19,16 @@ router.get('/all', function(req, res) {
 router.get('/:id', function(req, res) {
     var id = req.params.id;
     if (id != null) {
-    var where = " id=" + id;
-    DbConnect.read(table, colums, where, function(error, data) {
-        if (typeof data !== 'undefined' && data.length > 0)
-            res.json(data);
-        else
-            res.json(404,{"msg" : "notExist", "error": error});
-    });
+        var where = " id=" + id;
+        DbConnect.read(table, colums, where, function(error, data) {
+            if (typeof data !== 'undefined' && data.length > 0)
+                res.json(data);
+            else
+                res.json(404, { "msg": "notExist", "error": error });
+        });
     }
     else
-        res.json(500,{"msg":"The id must be numeric"});
+        res.json(500, { "msg": "The id must be numeric" });
 });
 
 module.exports = router;
