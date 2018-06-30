@@ -31,22 +31,24 @@ $resultado = Rest::sendGet('events', '', '/');
     <h1>Eventos</h1>
     <table class="table table-condensed">
     <tr>
-        <td>#</td>
-        <td>Nombre</td>
-        <td>TipoEvento</td>
-        <td>Fecha</td>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>TipoEvento</th>
+        <th>Fecha</th>
     </tr>
     
     <?php 
         $decode = json_decode($resultado, true);
 
         for($i = 0; $i < count($decode); $i++){
-            var_dump($decode[$i]); 
-            //$id = $decode[$i]->Id;
-            //echo $id;
-            // $nombre_fruta = $decode[$i]->Nombre;
-            // $cantidad = $decode[$i]->Fecha;
-            // echo $id_fruta." ".$nombre_fruta." ".$cantidad;
+            $variable = $decode[$i];
+            // var_dump($variable);
+            echo("<tr>");
+            echo("<td>".$variable["Id"]."</td>");
+            echo("<td>".$variable["Nombre"]."</td>");
+            echo("<td>".$variable["IdTipoEvento"]."</td>");
+            echo("<td>".$variable["Fecha"]."</td>");
+            echo("</tr>");
         }
     ?>
     </table>
