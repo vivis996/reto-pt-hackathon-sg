@@ -1,8 +1,8 @@
-<?php 
+<?php
 session_start();
 
-include('./Functions/rest.php');
-include('./Models/Events.php');
+include './Functions/rest.php';
+include './Models/Events.php';
 $userActive = false;
 $resultado = Rest::sendGet('events', '', '/');
 ?>
@@ -23,41 +23,44 @@ $resultado = Rest::sendGet('events', '', '/');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-<?php include './shared/head.php' ?>
+<?php include './shared/head.php'?>
 
 <br/>
 <br/>
+<div class="container">
 <div class="row">
     <div class="col-md-12">
     <h1>Eventos</h1>
-    <table class="table table-condensed">
+    <br>
+    <table class="table table-striped table-condensed">
     <tr>
         <th>#</th>
         <th>Nombre</th>
         <th>TipoEvento</th>
         <th>Fecha</th>
     </tr>
-    
+
     <?php
-        // $class = new Events();
-        // $class->Nombre = 'hola';
-        // echo($class.Nombre);
-        // foreach ($data as $key => $value) $class->{$key} = $value;
+// $class = new Events();
+// $class->Nombre = 'hola';
+// echo($class.Nombre);
+// foreach ($data as $key => $value) $class->{$key} = $value;
 
-        $decode = json_decode($resultado, true);
+$decode = json_decode($resultado, true);
 
-        for($i = 0; $i < count($decode); $i++){
-            $variable = $decode[$i];
-            // var_dump($variable);
-            echo("<tr>");
-            echo("<td>".$variable["Id"]."</td>");
-            echo("<td>".$variable["Nombre"]."</td>");
-            echo("<td>".$variable["IdTipoEvento"]."</td>");
-            echo("<td>".$variable["Fecha"]."</td>");
-            echo("</tr>");
-        }
-    ?>
+for ($i = 0; $i < count($decode); $i++) {
+    $variable = $decode[$i];
+    // var_dump($variable);
+    echo("<tr>");
+    echo("<td>" . $variable["Id"] . "</td>");
+    echo("<td>" . $variable["Nombre"] . "</td>");
+    echo("<td>" . $variable["IdTipoEvento"] . "</td>");
+    echo("<td>" . $variable["Fecha"] . "</td>");
+    echo("</tr>");
+}
+?>
     </table>
+    </div>
     </div>
 </div>
 
