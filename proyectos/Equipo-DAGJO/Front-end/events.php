@@ -2,6 +2,7 @@
 session_start();
 
 include('./Functions/rest.php');
+include('./Models/Events.php');
 $userActive = false;
 $resultado = Rest::sendGet('events', '', '/');
 ?>
@@ -37,7 +38,12 @@ $resultado = Rest::sendGet('events', '', '/');
         <th>Fecha</th>
     </tr>
     
-    <?php 
+    <?php
+        // $class = new Events();
+        // $class->Nombre = 'hola';
+        // echo($class.Nombre);
+        // foreach ($data as $key => $value) $class->{$key} = $value;
+
         $decode = json_decode($resultado, true);
 
         for($i = 0; $i < count($decode); $i++){
