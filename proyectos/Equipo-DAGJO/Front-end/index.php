@@ -10,7 +10,7 @@ $userActive = false;
 <html lang="es">
 <head>
 <!-- meh -->
-    <title>NubeEventos</title>
+    <title>EvenToday</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,7 +28,7 @@ $userActive = false;
 <?php include './shared/head.php' ?>
 
 <div class="jumbotron text-center">
-    <h1>NubeEvento</h1>
+    <h1>EvenToday</h1>
     <p>¡Te ayudamos a encontrar los eventos más interesantes para ti!</p>
     <form>
         <div class="input-group">
@@ -53,7 +53,7 @@ $userActive = false;
                 </div>
                 <div class="panel-body">
 
-                    <img class="img-circle" src="img/cancun1.jpg" width="300" height="200">
+                    <img class="img-circle" src="img/DIABLOS.jpg" width="300" height="200">
                 </div>
                 <div class="panel-footer">
 
@@ -152,7 +152,6 @@ $userActive = false;
     <div class="row text-center slideanim">
         <div class="col-sm-4">
             <div class="thumbnail">
-s
                 <img src="img/cancun1.jpg" alt="Paris" width="800" height="200">
                 <p><a href="xd.php" title="Visitanos ">Cancun</a></p>
             </div>

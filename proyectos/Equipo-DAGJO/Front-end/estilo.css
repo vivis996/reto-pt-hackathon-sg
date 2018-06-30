@@ -20,7 +20,7 @@ h4 {
 }
 .jumbotron {
     content:"" ;
-    background: url("../img2/DIABLOS.jpg");
+    background: url("../img/index.jpg");
     opacity: 0.8;
     color: #f1fff2;
     padding: 100px 25px;
@@ -182,7 +182,7 @@ footer .glyphicon {
 }
 @media screen and (max-width: 480px) {
     .logo {
-        font-size: 0 ;
+        font-size: 150px;
     }
 }
 .img-circle {
