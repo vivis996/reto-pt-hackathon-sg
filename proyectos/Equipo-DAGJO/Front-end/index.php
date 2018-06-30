@@ -1,11 +1,8 @@
 <?php 
 session_start();
 
-include('rest.php');
+include('./Functions/rest.php');
 $userActive = false;
-if ($_SESSION["userActive"] != null)
-    $userActive = true;
-
 //$resultado = Rest::sendGet('users', '6', '/');
 ?>
 
@@ -21,11 +18,14 @@ if ($_SESSION["userActive"] != null)
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<?php include 'head.php' ?>
+<?php include './shared/head.php' ?>
 
 <div class="jumbotron text-center">
     <h1>NubeEvento</h1>
@@ -42,7 +42,7 @@ if ($_SESSION["userActive"] != null)
 <!-- Seccion de Eventos -->
 <div id="pricing" class="container-fluid">
     <div class="text-center">
-        <h2>Eventos</h2>
+        <a href="./events.php"><h2>Eventos</h2></a>
         <h4>Selecciona los eventos de tu preferencia</h4>
     </div>
     <div class="row slideanim">

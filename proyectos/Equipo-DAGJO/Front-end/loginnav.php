@@ -1,4 +1,4 @@
-<li><a href="registrarse.php"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+<li><a href="./profile/registrarse.php"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
 <li class="dropdown">
     <link rel="stylesheet" href="css/eslitologin.css">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Iniciar Sesión</b> <span class="caret"></span></a>
@@ -7,10 +7,6 @@
             <div class="row">
                 <div class="col-md-12">
                     Iniciar sesión
-                    <!--<div class="social-buttons">
-                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                    </div>-->
 
                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                         <div class="form-group">
