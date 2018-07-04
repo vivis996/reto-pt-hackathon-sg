@@ -23,7 +23,7 @@
                             <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
                         </div>
                         <div class="form-group">
-                            <a href="index.html" class="btn btn-tw"><i class="fa fa-twitter"></i> Iniciar Sesion</a>
+                            <a href="index.php" class="btn btn-tw"><i class="fa fa-twitter"></i> Iniciar Sesion</a>
                         </div>
                         <div class="checkbox">
                             <label>
