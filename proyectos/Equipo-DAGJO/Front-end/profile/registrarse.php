@@ -1,16 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-<head><!-- meh -->
-
-    <style>
-
-        .error {color: #FF0000;}
-    </style>
-</head>
-<body>
-
 <?php
-
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
@@ -68,7 +56,7 @@ function test_input($data) {
 ?>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="css/registro.css">
+<link rel="stylesheet" href="../css/registro.css">
 
 <div class="testbox">
     <h1>Registro</h1>
